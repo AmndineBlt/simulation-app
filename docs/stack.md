@@ -18,3 +18,12 @@ Angular (front)     →    NestJS (back)
 - contrôles UI           - API WebSocket (temps réel)
                          - sauvegarde BDD
 ```
+
+```
+Engine                    Rules
+------                    -----
+- créer la grille         - comment se déplacer
+- placer les animaux      - comment se reproduire
+- avancer d'un tick   →   - comment chasser
+- appliquer les règles    - qui mange qui
+```

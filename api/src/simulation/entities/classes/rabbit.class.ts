@@ -3,7 +3,7 @@ import { Point } from "../types/position.type";
 import { Diet } from "../enums/diet.enum";
 
 export class Rabbit implements Animal {
-  id = crypto.randomUUID(); // génère un id unique
+  id: string = crypto.randomUUID(); // génère un id unique
   isAlive: boolean = true;
   speed: number = 3;
   stamina: number = 10;
