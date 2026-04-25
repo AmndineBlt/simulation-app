@@ -1,15 +1,14 @@
 import { Grid } from "../types/grid.type";
 import { Rule } from "./interfaces/rule.interface";
 import { Entity } from "../entities/interfaces/entity.interface";
-import { Rabbit } from "../entities/classes/rabbit.class";
-import { Wolf } from "../entities/classes/wolf.class";
+import { Animal } from "../entities/classes/animal.class";
 
 export class MovementRule implements Rule {
   apply(grid: Grid): Grid {
-    const movedAnimals = new Set<Rabbit | Wolf>();
+    const movedAnimals = new Set<Animal>();
     grid.forEach((row: (Entity | null)[], i: number) => {
       row.forEach((cell: Entity | null, j: number) => {
-        if (cell instanceof Rabbit || cell instanceof Wolf) {
+        if (cell instanceof Animal) {
           const validDirections: number[][] = this.deplacement(grid, i, j);
           const direction: number[] | undefined =
             this.getRandomDirection(validDirections);
@@ -36,7 +35,7 @@ export class MovementRule implements Rule {
     ];
     const validDirection: number[][] = [];
 
-    directions.forEach((direction) => {
+    directions.forEach((direction: number[]) => {
       if (
         i + direction[0] >= 0 &&
         i + direction[0] < grid.length &&

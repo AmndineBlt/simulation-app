@@ -1,8 +1,8 @@
-import { Animal } from "../interfaces/animal.interface";
+import { Animal } from "./animal.class";
 import { Point } from "../types/position.type";
 import { Diet } from "../enums/diet.enum";
 
-export class Wolf implements Animal {
+export class Wolf extends Animal {
   id: string = crypto.randomUUID(); // génère un id unique
   isAlive: boolean = true;
   speed: number = 2;
@@ -10,5 +10,7 @@ export class Wolf implements Animal {
   reproductionRate: number = 2;
   diet: Diet = Diet.Carnivore;
 
-  constructor(public position: Point) {}
+  constructor(public position: Point) {
+    super(); // appel au constructeur parent
+  }
 }
