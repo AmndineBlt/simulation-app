@@ -1,0 +1,16 @@
+<p class="text-red-500 text-2xl">Test</p>
+<table class="border-collapse">
+  @for (row of grid(); track $index) {
+    <tr>
+      @for (cell of row; track $index) {
+        <td [ngClass]="{
+      'bg-white': !cell,
+      'bg-green-500': cell?.diet === 'herbivore',
+      'bg-red-500': cell?.diet === 'carnivore'
+    }"
+            class="w-6 h-6 border border-gray-300">
+        </td>
+      }
+    </tr>
+  }
+</table>
