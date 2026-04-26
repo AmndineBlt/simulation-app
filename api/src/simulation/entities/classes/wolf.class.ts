@@ -9,6 +9,7 @@ export class Wolf extends Animal {
   stamina: number = 15;
   reproductionRate: number = 2;
   diet: Diet = Diet.Carnivore;
+  type: string = "wolf";
 
   constructor(public position: Point) {
     super(); // appel au constructeur parent

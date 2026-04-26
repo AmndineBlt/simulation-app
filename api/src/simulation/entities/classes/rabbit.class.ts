@@ -9,6 +9,7 @@ export class Rabbit extends Animal {
   stamina: number = 10;
   reproductionRate: number = 4;
   diet: Diet = Diet.Herbivore;
+  type: string = "rabbit";
 
   constructor(public position: Point) {
     super(); // appel au constructeur parent

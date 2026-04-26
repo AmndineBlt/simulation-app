@@ -4,6 +4,7 @@ import { NgClass } from "@angular/common";
 
 interface GridCell {
   diet?: string;
+  type?: string;
 }
 
 @Component({

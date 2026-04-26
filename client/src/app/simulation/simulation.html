@@ -5,8 +5,9 @@
       @for (cell of row; track $index) {
         <td [ngClass]="{
       'bg-white': !cell,
-      'bg-green-500': cell?.diet === 'herbivore',
-      'bg-red-500': cell?.diet === 'carnivore'
+      'bg-green-500': cell?.type === 'rabbit',
+      'bg-red-500': cell?.type === 'wolf',
+      'bg-orange-500': cell?.type === 'carrot'
     }"
             class="w-6 h-6 border border-gray-300">
         </td>
