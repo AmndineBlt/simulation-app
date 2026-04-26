@@ -5,26 +5,43 @@ import { Grid } from "./types/grid.type";
 import { Rabbit } from "./entities/classes/rabbit.class";
 import { Wolf } from "./entities/classes/wolf.class";
 import { Carrot } from "./entities/classes/carrot.class";
+import { EatingRule } from "./rules/eating.rule";
+import { Point } from "./entities/types/position.type";
+import { Entity } from "./entities/interfaces/entity.interface";
 
 @Injectable()
 export class SimulationService {
   // instance privé de SimulationEngine avec MovementRule
-  private engine: SimulationEngine = new SimulationEngine([new MovementRule()]);
+  private engine: SimulationEngine = new SimulationEngine([
+    new MovementRule(),
+    new EatingRule(),
+  ]);
 
   // initialisation de la grille
   init(): void {
     this.engine.init(10, 10);
-    this.engine.placeEntity(new Rabbit({ x: 2, y: 2 }), 2, 2);
-    this.engine.placeEntity(new Rabbit({ x: 1, y: 0 }), 1, 0);
-    this.engine.placeEntity(new Wolf({ x: 5, y: 5 }), 5, 5);
-    this.engine.placeEntity(new Carrot({ x: 4, y: 3 }), 4, 3);
-    this.engine.placeEntity(new Carrot({ x: 0, y: 5 }), 0, 5);
-    this.engine.placeEntity(new Carrot({ x: 2, y: 0 }), 2, 0);
-    // console.log("Grille après init :", this.engine.grid[2][2]);
+    this.placeEntities(5, (pos: Point): Rabbit => new Rabbit(pos));
+    this.placeEntities(2, (pos: Point): Wolf => new Wolf(pos));
+    this.placeEntities(10, (pos: Point): Carrot => new Carrot(pos));
   }
 
   tick(): Grid {
     this.engine.tick();
     return this.engine.grid;
+  }
+
+  private placeEntities(
+    count: number,
+    createEntity: (position: Point) => Entity,
+  ): void {
+    let placed = 0;
+    while (placed < count) {
+      const x: number = Math.floor(Math.random() * 10);
+      const y: number = Math.floor(Math.random() * 10);
+      if (this.engine.grid[y][x] === null) {
+        this.engine.placeEntity(createEntity({ x, y }), x, y);
+        placed++;
+      }
+    }
   }
 }
