@@ -1,9 +1,18 @@
-import { Component } from "@angular/core";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Component, inject } from "@angular/core";
+import { Router, RouterLink } from "@angular/router";
+import { SimulationService } from "../simulation";
 
 @Component({
   selector: "app-navbar",
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink],
   templateUrl: "./navbar.html",
 })
-export class Navbar {}
+export class Navbar {
+  private simulationService = inject(SimulationService);
+  simulations = this.simulationService.simulations;
+  private router = inject(Router);
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
+  }
+}

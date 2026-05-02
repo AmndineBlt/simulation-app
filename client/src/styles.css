@@ -1,3 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  /* Couleurs primaires */
+  --color-primary: #fb923c;
+  --color-primary-hover: #ea580c;
+
+  /* Couleurs des entités */
+  --color-rabbit: #60be51;
+  --color-wolf: #ef4444;
+  --color-carrot: #f97316;
+
+  /* Couleurs UI */
+  --color-surface: #111827;
+  --color-surface-dark: #030712;
+  --color-border: #1f2937;
+  --color-text-muted: #6b7280;
+
+  /* Couleurs des boutons */
+  --color-pause: #facc15;
+  --color-pause-hover: #ca8a04;
+  --color-danger: #ef4444;
+  --color-danger-hover: #b91c1c;
+  --color-success: #fb923c;
+  --color-success-hover: #ea580c;
+
+  /* Font */
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}

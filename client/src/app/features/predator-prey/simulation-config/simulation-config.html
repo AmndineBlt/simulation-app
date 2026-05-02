@@ -1,55 +1,53 @@
-<div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
-  <p class="text-xs text-gray-500 tracking-widest mb-4">CONFIGURATION</p>
+<div class="bg-surface border border-border rounded-xl p-4">
+  <p class="text-xs text-text-muted tracking-widest mb-4">CONFIGURATION</p>
 
   <div class="grid grid-cols-2 gap-4">
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">GRID SIZE</label>
-      <input [(ngModel)]="config.gridSize" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="30" min="5"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">GRID SIZE</label>
+      <input [(ngModel)]="config.gridSize"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="30"
+             min="5" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">MAX CARROTS</label>
-      <input [(ngModel)]="config.maxCarrots" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="100" min="0"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">MAX CARROTS</label>
+      <input [(ngModel)]="config.maxCarrots"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="100"
+             min="0" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">RABBITS</label>
-      <input [(ngModel)]="config.rabbitCount" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="50" min="0"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">RABBITS</label>
+      <input [(ngModel)]="config.rabbitCount"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="50"
+             min="0" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">WOLVES</label>
-      <input [(ngModel)]="config.wolfCount" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="50" min="0"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">WOLVES</label>
+      <input [(ngModel)]="config.wolfCount"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="50"
+             min="0" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">RABBIT REPRO RATE</label>
-      <input [(ngModel)]="config.rabbitReproductionRate" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="1" min="0" step="0.1"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">RABBIT REPRO RATE</label>
+      <input [(ngModel)]="config.rabbitReproductionRate"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="1"
+             min="0" step="0.1" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">WOLF REPRO RATE</label>
-      <input [(ngModel)]="config.wolfReproductionRate" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="1" min="0" step="0.1"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">WOLF REPRO RATE</label>
+      <input [(ngModel)]="config.wolfReproductionRate"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="1"
+             min="0" step="0.1" type="number">
     </div>
-
     <div>
-      <label class="text-xs text-gray-500 tracking-widest">CARROTS</label>
-      <input [(ngModel)]="config.carrotCount" class="w-full mt-1 bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm" max="100" min="0"
-             type="number">
+      <label class="text-xs text-text-muted tracking-widest">CARROTS</label>
+      <input [(ngModel)]="config.carrotCount"
+             class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="100"
+             min="0" type="number">
     </div>
-
   </div>
 
   <button (click)="apply()"
-          class="mt-4 w-full px-4 py-2 text-sm tracking-wider border border-emerald-400 text-emerald-400 rounded hover:bg-emerald-400 hover:text-gray-950 transition-all">
+          class="mt-4 w-full px-4 py-2 text-sm tracking-wider border border-primary text-primary rounded hover:bg-primary hover:text-surface-dark transition-all">
     ✓ APPLY & RESTART
   </button>
-
 </div>
