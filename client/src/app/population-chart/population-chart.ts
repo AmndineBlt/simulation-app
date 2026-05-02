@@ -38,6 +38,26 @@ export class PopulationChart implements OnChanges, AfterViewInit {
           { label: "Carrots", data: [], borderColor: "#fb923c", backgroundColor: "transparent" },
         ],
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: "#6b7280" },
+            grid: { color: "#1f2937" },
+          },
+          x: {
+            ticks: { color: "#6b7280" },
+            grid: { color: "#1f2937" },
+          },
+        },
+        plugins: {
+          legend: {
+            labels: { color: "#6b7280" },
+          },
+        },
+      },
     });
   }
 
