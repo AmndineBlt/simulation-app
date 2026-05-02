@@ -9,6 +9,7 @@ import { Server, Socket } from "socket.io";
 import { SimulationService } from "../simulation.service";
 import { setInterval } from "node:timers";
 import { Grid } from "../types/grid.type";
+import { SimulationConfig } from "../simulation.config";
 
 @WebSocketGateway({ cors: { origin: "*" } })
 export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
@@ -34,6 +35,11 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   handleConnection(client: Socket) {
     // console.log("Client connecté !");
     this.simulationService.init(); // réinitialise à chaque connexion
+  }
+
+  @SubscribeMessage("updateConfig")
+  handleUpdateConfig(client: Socket, config: Partial<SimulationConfig>): void {
+    this.simulationService.updateConfig(config);
   }
 
   @SubscribeMessage("restart")

@@ -7,12 +7,16 @@ export class Wolf extends Animal {
   isAlive: boolean = true;
   speed: number = 2;
   stamina: number = 40;
-  reproductionRate: number = 0.2;
+  reproductionRate: number;
   diet: Diet = Diet.Carnivore;
   type: string = "wolf";
 
-  constructor(public position: Point) {
+  constructor(
+    public position: Point,
+    reproductionRate: number = 0.2,
+  ) {
     super();
+    this.reproductionRate = reproductionRate;
   }
 
   clone(position: Point): Wolf {

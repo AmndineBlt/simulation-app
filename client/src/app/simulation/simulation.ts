@@ -2,6 +2,8 @@ import { Component, OnInit, signal } from "@angular/core";
 import { io } from "socket.io-client";
 import { NgClass } from "@angular/common";
 import { PopulationChart } from "../population-chart/population-chart";
+import { SimulationConfig } from "../simulation-config/simulation-config";
+import { ISimulationConfig } from "../shared/simulation-config.interface";
 
 interface GridCell {
   diet?: string;
@@ -10,7 +12,7 @@ interface GridCell {
 
 @Component({
   selector: "app-simulation",
-  imports: [NgClass, PopulationChart],
+  imports: [NgClass, PopulationChart, SimulationConfig],
   templateUrl: "./simulation.html",
   styleUrl: "./simulation.css",
 })
@@ -59,8 +61,16 @@ export class Simulation implements OnInit {
   }
 
   changeSpeed(event: Event) {
-    const value = +(event.target as HTMLInputElement).value;
+    const value: number = +(event.target as HTMLInputElement).value;
     this.speed.set(value);
     this.socket.emit("speed", value);
+  }
+
+  updateConfig(config: Partial<ISimulationConfig>) {
+    this.socket.emit("updateConfig", config);
+    this.socket.emit("restart");
+    this.rabbitHistory.set([]);
+    this.wolfHistory.set([]);
+    this.carrotHistory.set([]);
   }
 }

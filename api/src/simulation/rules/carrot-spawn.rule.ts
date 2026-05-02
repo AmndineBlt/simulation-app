@@ -6,6 +6,11 @@ import { Point } from "../entities/types/position.type";
 
 export class CarrotSpawn extends BaseRule {
   MAX_CARROT: number = 20;
+
+  constructor(private maxCarrots: number) {
+    super();
+  }
+
   apply(grid: Grid): Grid {
     // 1. Compter les carottes existantes
     const carrotCount: number = grid
