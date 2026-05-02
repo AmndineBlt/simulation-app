@@ -19,24 +19,28 @@ export class Simulation implements OnInit {
   rabbitHistory = signal<number[]>([]);
   wolfHistory = signal<number[]>([]);
   carrotHistory = signal<number[]>([]);
+  private socket = io("http://localhost:3000");
 
   ngOnInit() {
-    const socket = io("http://localhost:3000");
-
-    socket.on("grid", (grid: (GridCell | null)[][]) => {
+    this.socket.on("grid", (grid: (GridCell | null)[][]) => {
       this.grid.set(grid);
 
-      const flat = grid.flat();
+      const flat: (GridCell | null)[] = grid.flat();
 
-      const rabbits = flat.filter((cell) => cell?.type === "rabbit").length;
-      const wolves = flat.filter((cell) => cell?.type === "wolf").length;
-      const carrots = flat.filter((cell) => cell?.type === "carrot").length;
+      const rabbits: number = flat.filter((cell: GridCell | null): boolean => cell?.type === "rabbit").length;
+      const wolves: number = flat.filter((cell: GridCell | null): boolean => cell?.type === "wolf").length;
+      const carrots: number = flat.filter((cell: GridCell | null): boolean => cell?.type === "carrot").length;
 
-      this.rabbitHistory.update((history) => [...history, rabbits]);
-      this.wolfHistory.update((history) => [...history, wolves]);
-      this.carrotHistory.update((history) => [...history, carrots]);
-
-      console.log("rabbitHistory:", this.rabbitHistory());
+      this.rabbitHistory.update((history: number[]): number[] => [...history, rabbits]);
+      this.wolfHistory.update((history: number[]): number[] => [...history, wolves]);
+      this.carrotHistory.update((history: number[]): number[] => [...history, carrots]);
     });
+  }
+
+  restart() {
+    this.rabbitHistory.set([]);
+    this.wolfHistory.set([]);
+    this.carrotHistory.set([]);
+    this.socket.emit("restart");
   }
 }

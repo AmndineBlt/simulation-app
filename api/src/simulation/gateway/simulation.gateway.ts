@@ -1,4 +1,10 @@
-import { OnGatewayConnection, OnGatewayInit, WebSocketGateway, WebSocketServer, } from "@nestjs/websockets";
+import {
+  OnGatewayConnection,
+  OnGatewayInit,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+} from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
 import { SimulationService } from "../simulation.service";
 import { setInterval } from "node:timers";
@@ -26,5 +32,10 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   handleConnection(client: Socket) {
     // console.log("Client connecté !");
     this.simulationService.init(); // réinitialise à chaque connexion
+  }
+
+  @SubscribeMessage("restart")
+  handleRestart(): void {
+    this.simulationService.init();
   }
 }
