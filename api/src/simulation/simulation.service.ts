@@ -12,6 +12,7 @@ import { EatingRule } from "./rules/eating.rule";
 import { ReproductionRule } from "./rules/reproduction.rule";
 import { EnergyRule } from "./rules/energy.rule";
 import { CarrotSpawn } from "./rules/carrot-spawn.rule";
+import { Animal } from "./entities/classes/animal.class";
 
 @Injectable()
 export class SimulationService {
@@ -48,8 +49,22 @@ export class SimulationService {
 
   tick(): Grid {
     if (!this.engine) return [];
+
+    const hasAnimals = this.engine.grid
+      .flat()
+      .some((cell: Entity | null): boolean => cell instanceof Animal);
+
+    if (!hasAnimals) return this.engine.grid;
+
     this.engine.tick();
     return this.engine.grid;
+  }
+
+  isSimulationOver(): boolean {
+    if (!this.engine) return false;
+    return !this.engine.grid
+      .flat()
+      .some((cell: Entity | null) => cell instanceof Animal);
   }
 
   private placeEntities(
@@ -57,13 +72,17 @@ export class SimulationService {
     createEntity: (position: Point) => Entity,
   ): void {
     let placed: number = 0;
-    while (placed < count) {
+    let attempts: number = 0;
+    const maxAttempts: number = count * 10;
+
+    while (placed < count && attempts < maxAttempts) {
       const x: number = Math.floor(Math.random() * this.config.gridSize);
       const y: number = Math.floor(Math.random() * this.config.gridSize);
       if (this.engine.grid[y][x] === null) {
         this.engine.placeEntity(createEntity({ x, y }), x, y);
         placed++;
       }
+      attempts++;
     }
   }
 }

@@ -7,10 +7,11 @@ import { GridCell } from "./gridCell.interface";
 import { SimulationGrid } from "../simulation-grid/simulation-grid";
 import { SimulationStats } from "../simulation-stats/simulation-stats";
 import { SimulationChart } from "../simulation-chart/simulation-chart";
+import { SimulationOver } from "../simulation-over/simulation-over";
 
 @Component({
   selector: "app-simulation",
-  imports: [SimulationChart, SimulationConfig, SimulationStats, SimulationControls, SimulationGrid],
+  imports: [SimulationChart, SimulationConfig, SimulationStats, SimulationControls, SimulationGrid, SimulationOver],
   templateUrl: "./simulation.html",
   styleUrl: "./simulation.css",
 })
@@ -21,6 +22,7 @@ export class Simulation implements OnInit {
   carrotHistory = signal<number[]>([]);
   isPaused = signal<boolean>(false);
   speed = signal<number>(1000);
+  isSimulationOver = signal<boolean>(false);
   private socket = io("http://localhost:3000");
 
   ngOnInit() {
@@ -36,6 +38,9 @@ export class Simulation implements OnInit {
       this.rabbitHistory.update((history: number[]): number[] => [...history, rabbits]);
       this.wolfHistory.update((history: number[]): number[] => [...history, wolves]);
       this.carrotHistory.update((history: number[]): number[] => [...history, carrots]);
+    });
+    this.socket.on("simulation-over", () => {
+      this.isSimulationOver.set(true);
     });
   }
 
@@ -55,6 +60,7 @@ export class Simulation implements OnInit {
     this.rabbitHistory.set([]);
     this.wolfHistory.set([]);
     this.carrotHistory.set([]);
+    this.isSimulationOver.set(false);
     this.socket.emit("restart");
   }
 
@@ -69,5 +75,6 @@ export class Simulation implements OnInit {
     this.rabbitHistory.set([]);
     this.wolfHistory.set([]);
     this.carrotHistory.set([]);
+    this.isSimulationOver.set(false);
   }
 }

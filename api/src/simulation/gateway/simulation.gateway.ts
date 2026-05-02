@@ -29,6 +29,11 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
     this.intervalId = setInterval(() => {
       const grid: Grid = this.simulationService.tick();
       this.server.emit("grid", grid);
+
+      if (this.simulationService.isSimulationOver()) {
+        this.server.emit("simulation-over");
+        clearInterval(this.intervalId);
+      }
     }, this.speed);
   }
 
@@ -45,7 +50,9 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   @SubscribeMessage("restart")
   handleRestart(): void {
     // console.log("restart reçu !");
+    clearInterval(this.intervalId);
     this.simulationService.init();
+    this.startSimulation();
   }
 
   @SubscribeMessage("pause")

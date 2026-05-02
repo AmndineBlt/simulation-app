@@ -1,5 +1,11 @@
 <div class="min-h-screen bg-surface-dark text-white p-4 md:p-6 font-mono">
-
+  @if (isSimulationOver()) {
+    <app-simulation-over
+      (restarted)="restart()"
+      [rabbitHistory]="rabbitHistory()"
+      [wolfHistory]="wolfHistory()"
+    />
+  }
   <!-- Header -->
   <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
     <div>
