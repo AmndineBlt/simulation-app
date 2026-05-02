@@ -33,6 +33,7 @@ export class ReproductionRule extends BaseRule {
               const newX: number = j + emptyDirection[1];
               const newY: number = i + emptyDirection[0];
               grid[newY][newX] = cell.clone({ x: newX, y: newY });
+              cell.stamina -= 2;
             }
           }
         }

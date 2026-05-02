@@ -9,6 +9,7 @@ import { EatingRule } from "./rules/eating.rule";
 import { Point } from "./entities/types/position.type";
 import { Entity } from "./entities/interfaces/entity.interface";
 import { ReproductionRule } from "./rules/reproduction.rule";
+import { EnergyRule } from "./rules/energy.rule";
 
 @Injectable()
 export class SimulationService {
@@ -17,6 +18,7 @@ export class SimulationService {
     new MovementRule(),
     new EatingRule(),
     new ReproductionRule(),
+    new EnergyRule(),
   ]);
 
   // initialisation de la grille

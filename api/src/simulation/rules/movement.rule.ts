@@ -23,6 +23,7 @@ export class MovementRule extends BaseRule {
           // 2. Vider l'ancienne case
           grid[i][j] = null;
           movedAnimals.add(cell); // on marque l'animal déplacé
+          cell.stamina -= 1;
         }
       }
     });

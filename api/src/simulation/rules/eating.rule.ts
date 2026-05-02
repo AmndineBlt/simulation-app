@@ -35,6 +35,7 @@ export class EatingRule extends BaseRule {
           this.getRandomDirection(adjacentCarrots);
         if (direction) {
           grid[i + direction[0]][j + direction[1]] = null;
+          cell.stamina += 5;
         }
       }
     });
