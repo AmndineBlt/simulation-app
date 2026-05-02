@@ -25,20 +25,11 @@
     <div class="flex flex-col gap-4 flex-1 min-w-0">
 
       <!-- Stats -->
-      <div class="grid grid-cols-3 gap-3">
-        <app-start-card
-          [value]="rabbitHistory()[rabbitHistory().length - 1] || 0"
-          color="rabbit"
-          label="RABBITS"/>
-        <app-start-card
-          [value]="wolfHistory()[wolfHistory().length - 1] || 0"
-          color="wolf"
-          label="WOLVES"/>
-        <app-start-card
-          [value]="carrotHistory()[carrotHistory().length - 1] || 0"
-          color="carrot"
-          label="CARROTS"/>
-      </div>
+      <app-simulation-stats
+        [carrots]="carrotHistory()[carrotHistory().length - 1] || 0"
+        [rabbits]="rabbitHistory()[rabbitHistory().length - 1] || 0"
+        [wolves]="wolfHistory()[wolfHistory().length - 1] || 0"
+      />
 
       <!-- Graphique -->
       <div class="bg-surface border border-border rounded-xl p-4 flex-1">

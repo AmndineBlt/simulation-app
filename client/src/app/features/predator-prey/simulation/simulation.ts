@@ -3,14 +3,14 @@ import { io } from "socket.io-client";
 import { PopulationChart } from "../population-chart/population-chart";
 import { SimulationConfig } from "../simulation-config/simulation-config";
 import { ISimulationConfig } from "../../../shared/simulation-config.interface";
-import { StartCard } from "../../../shared/start-card/start-card";
 import { SimulationControls } from "../simulation-controls/simulation-controls";
 import { GridCell } from "./gridCell.interface";
 import { SimulationGrid } from "../simulation-grid/simulation-grid";
+import { SimulationStats } from "../simulation-stats/simulation-stats";
 
 @Component({
   selector: "app-simulation",
-  imports: [PopulationChart, SimulationConfig, StartCard, SimulationControls, SimulationGrid],
+  imports: [PopulationChart, SimulationConfig, SimulationStats, SimulationControls, SimulationGrid],
   templateUrl: "./simulation.html",
   styleUrl: "./simulation.css",
 })
