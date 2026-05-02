@@ -4,15 +4,13 @@ import { NgClass } from "@angular/common";
 import { PopulationChart } from "../population-chart/population-chart";
 import { SimulationConfig } from "../simulation-config/simulation-config";
 import { ISimulationConfig } from "../../../shared/simulation-config.interface";
-
-interface GridCell {
-  diet?: string;
-  type?: string;
-}
+import { StartCard } from "../../../shared/start-card/start-card";
+import { SimulationControls } from "../simulation-controls/simulation-controls";
+import { GridCell } from "./gridCell.interface";
 
 @Component({
   selector: "app-simulation",
-  imports: [NgClass, PopulationChart, SimulationConfig],
+  imports: [NgClass, PopulationChart, SimulationConfig, StartCard, SimulationControls],
   templateUrl: "./simulation.html",
   styleUrl: "./simulation.css",
 })
@@ -60,8 +58,7 @@ export class Simulation implements OnInit {
     this.socket.emit("restart");
   }
 
-  changeSpeed(event: Event) {
-    const value: number = +(event.target as HTMLInputElement).value;
+  changeSpeed(value: number) {
     this.speed.set(value);
     this.socket.emit("speed", value);
   }
