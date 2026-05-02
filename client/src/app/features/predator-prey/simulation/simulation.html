@@ -17,35 +17,26 @@
 
   <!-- Main content -->
   <div class="flex flex-col xl:flex-row gap-6">
-
     <!-- Colonne gauche — Grille -->
     <app-simulation-grid [grid]="grid()"/>
-
     <!-- Colonne centrale — Stats + Graphique -->
     <div class="flex flex-col gap-4 flex-1 min-w-0">
-
       <!-- Stats -->
       <app-simulation-stats
         [carrots]="carrotHistory()[carrotHistory().length - 1] || 0"
         [rabbits]="rabbitHistory()[rabbitHistory().length - 1] || 0"
         [wolves]="wolfHistory()[wolfHistory().length - 1] || 0"
       />
-
       <!-- Graphique -->
-      <div class="bg-surface border border-border rounded-xl p-4 flex-1">
-        <p class="text-xs text-text-muted tracking-widest mb-3">POPULATION HISTORY</p>
-        <app-population-chart
-          [carrots]="carrotHistory()"
-          [rabbits]="rabbitHistory()"
-          [wolves]="wolfHistory()"
-        />
-      </div>
+      <app-simulation-chart
+        [carrots]="carrotHistory()"
+        [rabbits]="rabbitHistory()"
+        [wolves]="wolfHistory()"
+      />
     </div>
-
     <!-- Colonne droite — Configuration -->
     <div class="w-full xl:w-72 shrink-0">
       <app-simulation-config (configChanged)="updateConfig($event)"/>
     </div>
-
   </div>
 </div>
