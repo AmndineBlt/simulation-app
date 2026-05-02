@@ -1,0 +1,13 @@
+<nav class="bg-gray-900 border-b border-gray-800 px-4 md:px-6 py-3 font-mono">
+  <div class="flex items-center justify-between">
+    <a class="text-emerald-400 font-bold tracking-widest hover:text-emerald-300 transition-colors" routerLink="/">
+      SIMULATIONS
+    </a>
+    <div class="flex gap-4 text-xs text-gray-500 tracking-widest">
+      <a [routerLinkActiveOptions]="{exact: true}" class="hover:text-white transition-colors" routerLink="/"
+         routerLinkActive="text-emerald-400">HOME</a>
+      <a class="hover:text-white transition-colors" routerLink="/simulation/predator-prey"
+         routerLinkActive="text-emerald-400">PREDATOR / PREY</a>
+    </div>
+  </div>
+</nav>

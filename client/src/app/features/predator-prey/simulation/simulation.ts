@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { NgClass } from "@angular/common";
 import { PopulationChart } from "../population-chart/population-chart";
 import { SimulationConfig } from "../simulation-config/simulation-config";
-import { ISimulationConfig } from "../shared/simulation-config.interface";
+import { ISimulationConfig } from "../../../shared/simulation-config.interface";
 
 interface GridCell {
   diet?: string;

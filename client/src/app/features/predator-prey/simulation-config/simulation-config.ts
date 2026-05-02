@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ISimulationConfig } from "../shared/simulation-config.interface";
+import { ISimulationConfig } from "../../../shared/simulation-config.interface";
 
 @Component({
   selector: "app-simulation-config",
