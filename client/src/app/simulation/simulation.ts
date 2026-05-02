@@ -19,6 +19,7 @@ export class Simulation implements OnInit {
   rabbitHistory = signal<number[]>([]);
   wolfHistory = signal<number[]>([]);
   carrotHistory = signal<number[]>([]);
+  isPaused = signal<boolean>(false);
   private socket = io("http://localhost:3000");
 
   ngOnInit() {
@@ -37,7 +38,19 @@ export class Simulation implements OnInit {
     });
   }
 
+  togglePause() {
+    // console.log("togglePause appelé, isPaused:", this.isPaused());
+    if (this.isPaused()) {
+      this.socket.emit("resume");
+      this.isPaused.set(false);
+    } else {
+      this.socket.emit("pause");
+      this.isPaused.set(true);
+    }
+  }
+
   restart() {
+    // console.log("restart appelé");
     this.rabbitHistory.set([]);
     this.wolfHistory.set([]);
     this.carrotHistory.set([]);

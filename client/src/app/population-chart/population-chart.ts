@@ -33,9 +33,9 @@ export class PopulationChart implements OnChanges, AfterViewInit {
       data: {
         labels: [],
         datasets: [
-          { label: "Lapins", data: [], borderColor: "green" },
-          { label: "Loups", data: [], borderColor: "red" },
-          { label: "Carottes", data: [], borderColor: "orange" },
+          { label: "Rabbits", data: [], borderColor: "#34d399", backgroundColor: "transparent" },
+          { label: "Wolves", data: [], borderColor: "#f87171", backgroundColor: "transparent" },
+          { label: "Carrots", data: [], borderColor: "#fb923c", backgroundColor: "transparent" },
         ],
       },
     });

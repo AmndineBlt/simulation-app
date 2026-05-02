@@ -14,6 +14,7 @@ import { Grid } from "../types/grid.type";
 export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   @WebSocketServer()
   server: Server;
+  private intervalId?: NodeJS.Timeout;
 
   constructor(private simulationService: SimulationService) {}
 
@@ -23,7 +24,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   }
 
   startSimulation() {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       const grid: Grid = this.simulationService.tick();
       this.server.emit("grid", grid);
     }, 1000);
@@ -36,6 +37,19 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
 
   @SubscribeMessage("restart")
   handleRestart(): void {
+    // console.log("restart reçu !");
     this.simulationService.init();
+  }
+
+  @SubscribeMessage("pause")
+  handlePause(): void {
+    // console.log("pause reçu !");
+    clearInterval(this.intervalId);
+  }
+
+  @SubscribeMessage("resume")
+  handleResume(): void {
+    // console.log("resume reçu !");
+    this.startSimulation();
   }
 }
