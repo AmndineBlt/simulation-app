@@ -1,6 +1,7 @@
 import { Rule } from "./interfaces/rule.interface";
 import { Grid } from "../types/grid.type";
 import { Entity } from "../entities/interfaces/entity.interface";
+import { Point } from "../entities/types/position.type";
 
 export abstract class BaseRule implements Rule {
   abstract apply(grid: Grid): Grid;
@@ -49,5 +50,21 @@ export abstract class BaseRule implements Rule {
     if (directions.length === 0) return undefined;
     const index: number = Math.floor(Math.random() * directions.length);
     return directions[index];
+  }
+
+  protected placeEntities(
+    grid: Grid,
+    count: number,
+    createEntity: (position: Point) => Entity,
+  ): void {
+    let placed: number = 0;
+    while (placed < count) {
+      const x: number = Math.floor(Math.random() * grid[0].length);
+      const y: number = Math.floor(Math.random() * grid.length);
+      if (grid[y][x] === null) {
+        grid[y][x] = createEntity({ x, y });
+        placed++;
+      }
+    }
   }
 }

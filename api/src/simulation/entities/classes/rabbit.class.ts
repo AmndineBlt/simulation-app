@@ -6,7 +6,7 @@ export class Rabbit extends Animal {
   id: string = crypto.randomUUID(); // génère un id unique
   isAlive: boolean = true;
   speed: number = 3;
-  stamina: number = 10;
+  stamina: number = 40;
   reproductionRate: number = 0.4;
   diet: Diet = Diet.Herbivore;
   type: string = "rabbit";

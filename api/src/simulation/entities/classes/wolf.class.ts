@@ -6,7 +6,7 @@ export class Wolf extends Animal {
   id: string = crypto.randomUUID(); // génère un id unique
   isAlive: boolean = true;
   speed: number = 2;
-  stamina: number = 15;
+  stamina: number = 40;
   reproductionRate: number = 0.2;
   diet: Diet = Diet.Carnivore;
   type: string = "wolf";

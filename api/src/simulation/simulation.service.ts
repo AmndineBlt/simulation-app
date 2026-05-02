@@ -10,6 +10,7 @@ import { Point } from "./entities/types/position.type";
 import { Entity } from "./entities/interfaces/entity.interface";
 import { ReproductionRule } from "./rules/reproduction.rule";
 import { EnergyRule } from "./rules/energy.rule";
+import { CarrotSpawn } from "./rules/carrot-spawn.rule";
 
 @Injectable()
 export class SimulationService {
@@ -19,6 +20,7 @@ export class SimulationService {
     new EatingRule(),
     new ReproductionRule(),
     new EnergyRule(),
+    new CarrotSpawn(),
   ]);
 
   // initialisation de la grille
