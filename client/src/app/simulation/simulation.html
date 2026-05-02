@@ -1,17 +1,24 @@
 <p class="text-red-500 text-2xl">Test</p>
-<table class="border-collapse">
-  @for (row of grid(); track $index) {
-    <tr>
-      @for (cell of row; track $index) {
-        <td [ngClass]="{
-      'bg-white': !cell,
-      'bg-green-500': cell?.type === 'rabbit',
-      'bg-red-500': cell?.type === 'wolf',
-      'bg-orange-500': cell?.type === 'carrot'
-    }"
-            class="w-6 h-6 border border-gray-300">
-        </td>
-      }
-    </tr>
-  }
-</table>
+<div class="flex gap-8">
+  <table class="border-collapse">
+    @for (row of grid(); track $index) {
+      <tr>
+        @for (cell of row; track $index) {
+          <td [ngClass]="{
+            'bg-white': !cell,
+            'bg-green-500': cell?.type === 'rabbit',
+            'bg-red-500': cell?.type === 'wolf',
+            'bg-orange-500': cell?.type === 'carrot'
+          }" class="w-6 h-6 border border-gray-300">
+          </td>
+        }
+      </tr>
+    }
+  </table>
+
+  <app-population-chart
+    [carrots]="carrotHistory()"
+    [rabbits]="rabbitHistory()"
+    [wolves]="wolfHistory()"
+  />
+</div>
