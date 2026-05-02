@@ -15,6 +15,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   @WebSocketServer()
   server: Server;
   private intervalId?: NodeJS.Timeout;
+  private speed: number = 1000;
 
   constructor(private simulationService: SimulationService) {}
 
@@ -27,7 +28,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
     this.intervalId = setInterval(() => {
       const grid: Grid = this.simulationService.tick();
       this.server.emit("grid", grid);
-    }, 1000);
+    }, this.speed);
   }
 
   handleConnection(client: Socket) {
@@ -50,6 +51,12 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   @SubscribeMessage("resume")
   handleResume(): void {
     // console.log("resume reçu !");
+    this.startSimulation();
+  }
+  @SubscribeMessage("speed")
+  handleSpeed(client: Socket, speed: number): void {
+    this.speed = speed;
+    clearInterval(this.intervalId);
     this.startSimulation();
   }
 }

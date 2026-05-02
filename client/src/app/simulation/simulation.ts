@@ -20,6 +20,7 @@ export class Simulation implements OnInit {
   wolfHistory = signal<number[]>([]);
   carrotHistory = signal<number[]>([]);
   isPaused = signal<boolean>(false);
+  speed = signal<number>(1000);
   private socket = io("http://localhost:3000");
 
   ngOnInit() {
@@ -55,5 +56,11 @@ export class Simulation implements OnInit {
     this.wolfHistory.set([]);
     this.carrotHistory.set([]);
     this.socket.emit("restart");
+  }
+
+  changeSpeed(event: Event) {
+    const value = +(event.target as HTMLInputElement).value;
+    this.speed.set(value);
+    this.socket.emit("speed", value);
   }
 }
