@@ -3,7 +3,7 @@ import { Grid } from "../types/grid.type";
 import { Entity } from "../entities/interfaces/entity.interface";
 
 export class SimulationEngine {
-  grid: Grid;
+  grid: Grid = [];
   constructor(private rules: Rule[]) {}
 
   init(width: number, height: number): void {
@@ -13,6 +13,7 @@ export class SimulationEngine {
   }
 
   tick(): void {
+    if (this.grid.length === 0) return;
     this.rules.forEach((rule: Rule) => {
       this.grid = rule.apply(this.grid);
     });

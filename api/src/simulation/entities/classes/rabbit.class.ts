@@ -7,11 +7,15 @@ export class Rabbit extends Animal {
   isAlive: boolean = true;
   speed: number = 3;
   stamina: number = 10;
-  reproductionRate: number = 4;
+  reproductionRate: number = 0.4;
   diet: Diet = Diet.Herbivore;
   type: string = "rabbit";
 
   constructor(public position: Point) {
-    super(); // appel au constructeur parent
+    super();
+  }
+
+  clone(position: Point): Rabbit {
+    return new Rabbit(position);
   }
 }

@@ -8,6 +8,7 @@ import { Carrot } from "./entities/classes/carrot.class";
 import { EatingRule } from "./rules/eating.rule";
 import { Point } from "./entities/types/position.type";
 import { Entity } from "./entities/interfaces/entity.interface";
+import { ReproductionRule } from "./rules/reproduction.rule";
 
 @Injectable()
 export class SimulationService {
@@ -15,6 +16,7 @@ export class SimulationService {
   private engine: SimulationEngine = new SimulationEngine([
     new MovementRule(),
     new EatingRule(),
+    new ReproductionRule(),
   ]);
 
   // initialisation de la grille
@@ -34,7 +36,7 @@ export class SimulationService {
     count: number,
     createEntity: (position: Point) => Entity,
   ): void {
-    let placed = 0;
+    let placed: number = 0;
     while (placed < count) {
       const x: number = Math.floor(Math.random() * 10);
       const y: number = Math.floor(Math.random() * 10);

@@ -12,7 +12,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   constructor(private simulationService: SimulationService) {}
 
   afterInit() {
-    console.log("Gateway initialisé !");
+    // console.log("Gateway initialisé !");
     this.startSimulation();
   }
 
@@ -24,7 +24,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
   }
 
   handleConnection(client: Socket) {
-    console.log("Client connecté !");
+    // console.log("Client connecté !");
     this.simulationService.init(); // réinitialise à chaque connexion
   }
 }

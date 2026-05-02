@@ -16,7 +16,8 @@ export class EatingRule extends BaseRule {
           j,
           (cell: Entity | null): boolean => cell instanceof Rabbit,
         );
-        const direction = this.getRandomDirection(adjacentRabbits);
+        const direction: number[] | undefined =
+          this.getRandomDirection(adjacentRabbits);
         if (direction) {
           grid[i + direction[0]][j + direction[1]] = null;
         }
@@ -30,7 +31,8 @@ export class EatingRule extends BaseRule {
           j,
           (cell: Entity | null): boolean => cell instanceof Carrot,
         );
-        const direction = this.getRandomDirection(adjacentCarrots);
+        const direction: number[] | undefined =
+          this.getRandomDirection(adjacentCarrots);
         if (direction) {
           grid[i + direction[0]][j + direction[1]] = null;
         }
