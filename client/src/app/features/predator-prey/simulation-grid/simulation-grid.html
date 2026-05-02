@@ -1,0 +1,32 @@
+<div class="bg-surface rounded-xl p-4 border border-border flex flex-col items-center xl:items-start">
+  <p class="text-xs text-text-muted tracking-widest mb-3">GRID</p>
+  <div class="overflow-auto w-full">
+    <table class="border-collapse mx-auto xl:mx-0">
+      @for (row of grid; track $index) {
+        <tr>
+          @for (cell of row; track $index) {
+            <td [ngClass]="{
+                  'bg-surface-dark': !cell,
+                  'bg-rabbit': cell?.type === 'rabbit',
+                  'bg-wolf': cell?.type === 'wolf',
+                  'bg-carrot': cell?.type === 'carrot'
+                }"
+                class="w-8 h-8 md:w-10 md:h-10 border border-border rounded-sm transition-colors duration-300">
+            </td>
+          }
+        </tr>
+      }
+    </table>
+  </div>
+  <div class="flex flex-wrap gap-4 text-xs text-text-muted mt-4">
+    <span class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-sm bg-rabbit inline-block"></span> Rabbit
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-sm bg-wolf inline-block"></span> Wolf
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-sm bg-carrot inline-block"></span> Carrot
+    </span>
+  </div>
+</div>

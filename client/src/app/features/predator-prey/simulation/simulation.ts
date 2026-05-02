@@ -1,16 +1,16 @@
 import { Component, OnInit, signal } from "@angular/core";
 import { io } from "socket.io-client";
-import { NgClass } from "@angular/common";
 import { PopulationChart } from "../population-chart/population-chart";
 import { SimulationConfig } from "../simulation-config/simulation-config";
 import { ISimulationConfig } from "../../../shared/simulation-config.interface";
 import { StartCard } from "../../../shared/start-card/start-card";
 import { SimulationControls } from "../simulation-controls/simulation-controls";
 import { GridCell } from "./gridCell.interface";
+import { SimulationGrid } from "../simulation-grid/simulation-grid";
 
 @Component({
   selector: "app-simulation",
-  imports: [NgClass, PopulationChart, SimulationConfig, StartCard, SimulationControls],
+  imports: [PopulationChart, SimulationConfig, StartCard, SimulationControls, SimulationGrid],
   templateUrl: "./simulation.html",
   styleUrl: "./simulation.css",
 })
