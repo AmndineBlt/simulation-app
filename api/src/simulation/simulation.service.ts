@@ -47,6 +47,7 @@ export class SimulationService {
   }
 
   tick(): Grid {
+    if (!this.engine) return [];
     this.engine.tick();
     return this.engine.grid;
   }
