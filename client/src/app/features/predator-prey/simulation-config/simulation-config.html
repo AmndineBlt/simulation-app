@@ -47,7 +47,8 @@
   </div>
 
   <button (click)="apply()"
-          class="mt-4 w-full px-4 py-2 text-sm tracking-wider border border-primary text-primary rounded hover:bg-primary hover:text-surface-dark transition-all">
-    ✓ APPLY & RESTART
+          class="flex items-center gap-2 mt-4 w-full px-4 py-2 text-sm tracking-wider border border-primary text-primary rounded hover:bg-primary hover:text-surface-dark transition-all cursor-pointer">
+    <lucide-icon [class.spin-once]="isRestarting" [img]="Apply" [size]="15"/>
+    APPLY & RESTART
   </button>
 </div>

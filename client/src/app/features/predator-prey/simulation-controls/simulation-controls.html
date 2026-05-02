@@ -7,13 +7,20 @@
   </div>
   <button (click)="pauseToggled.emit()"
           [ngClass]="isPaused
-      ? 'border-primary text-primary hover:bg-primary hover:text-surface-dark'
-      : 'border-pause text-pause hover:bg-pause hover:text-surface-dark'"
-          class="px-4 py-2 text-sm tracking-wider border rounded transition-all cursor-pointer">
-    {{ isPaused ? '▶ RESUME' : '⏸ PAUSE' }}
+    ? 'border-primary text-primary hover:bg-primary hover:text-surface-dark'
+    : 'border-pause text-pause hover:bg-pause hover:text-surface-dark'"
+          class="flex items-center gap-2 px-4 py-2 text-sm tracking-wider border rounded transition-all cursor-pointer">
+    @if (isPaused) {
+      <lucide-icon [img]="Play" [size]="15"/>
+      RESUME
+    } @else {
+      <lucide-icon [img]="Pause" [size]="15"/>
+      PAUSE
+    }
   </button>
-  <button (click)="restarted.emit()"
-          class="px-4 py-2 text-sm tracking-wider border border-danger text-danger rounded hover:bg-danger hover:text-surface-dark transition-all cursor-pointer">
-    ↺ RESTART
+  <button (click)="onRestart()"
+          class="flex items-center gap-2 px-4 py-2 text-sm tracking-wider border border-danger text-danger rounded hover:bg-danger hover:text-surface-dark transition-all cursor-pointer">
+    <lucide-icon [class.spin-once]="isRestarting" [img]="RotateCcw" [size]="15"/>
+    RESTART
   </button>
 </div>
