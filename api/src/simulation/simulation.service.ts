@@ -31,11 +31,12 @@ export class SimulationService {
     this.engine.init(this.config.gridSize, this.config.gridSize);
     this.placeEntities(
       this.config.rabbitCount,
-      (pos) => new Rabbit(pos, this.config.rabbitReproductionRate),
+      (pos: Point): Rabbit =>
+        new Rabbit(pos, this.config.rabbitReproductionRate),
     );
     this.placeEntities(
       this.config.wolfCount,
-      (pos) => new Wolf(pos, this.config.wolfReproductionRate),
+      (pos: Point): Wolf => new Wolf(pos, this.config.wolfReproductionRate),
     );
     this.placeEntities(
       this.config.carrotCount,
@@ -50,7 +51,7 @@ export class SimulationService {
   tick(): Grid {
     if (!this.engine) return [];
 
-    const hasAnimals = this.engine.grid
+    const hasAnimals: boolean = this.engine.grid
       .flat()
       .some((cell: Entity | null): boolean => cell instanceof Animal);
 
@@ -62,9 +63,33 @@ export class SimulationService {
 
   isSimulationOver(): boolean {
     if (!this.engine) return false;
-    return !this.engine.grid
-      .flat()
-      .some((cell: Entity | null) => cell instanceof Animal);
+
+    const flat: (Entity | null)[] = this.engine.grid.flat();
+
+    const hasAnimals: boolean = flat.some(
+      (cell: Entity | null) => cell instanceof Animal,
+    );
+    const hasEmptyCells: boolean = flat.some(
+      (cell: Entity | null) => cell === null,
+    );
+
+    return !hasAnimals || !hasEmptyCells;
+  }
+
+  getSimulationOverReason(): string | null {
+    if (!this.engine) return null;
+
+    const flat: (Entity | null)[] = this.engine.grid.flat();
+    const hasAnimals: boolean = flat.some(
+      (cell: Entity | null) => cell instanceof Animal,
+    );
+    const hasEmptyCells: boolean = flat.some(
+      (cell: Entity | null) => cell === null,
+    );
+
+    if (!hasAnimals) return "ALL ANIMALS HAVE PERISHED";
+    if (!hasEmptyCells) return "GRID IS FULL — SIMULATION STUCK";
+    return null;
   }
 
   private placeEntities(

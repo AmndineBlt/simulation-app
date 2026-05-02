@@ -23,6 +23,7 @@ export class Simulation implements OnInit {
   isPaused = signal<boolean>(false);
   speed = signal<number>(1000);
   isSimulationOver = signal<boolean>(false);
+  simulationOverReason = signal<string>("");
   private socket = io("http://localhost:3000");
 
   ngOnInit() {
@@ -39,7 +40,9 @@ export class Simulation implements OnInit {
       this.wolfHistory.update((history: number[]): number[] => [...history, wolves]);
       this.carrotHistory.update((history: number[]): number[] => [...history, carrots]);
     });
-    this.socket.on("simulation-over", () => {
+    this.socket.on("simulation-over", (reason: string) => {
+      console.log("simulation-over reçu, reason:", reason);
+      this.simulationOverReason.set(reason);
       this.isSimulationOver.set(true);
     });
   }
@@ -56,7 +59,11 @@ export class Simulation implements OnInit {
   }
 
   restart() {
-    // console.log("restart appelé");
+    // console.log("restart appelé !");
+    // console.log("socket connected:", this.socket.connected);
+    if (!this.socket.connected) {
+      this.socket.connect();
+    }
     this.rabbitHistory.set([]);
     this.wolfHistory.set([]);
     this.carrotHistory.set([]);

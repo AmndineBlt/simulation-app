@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { SimulationService } from "../simulation";
+import { SimulationService } from "../simulation.constant";
 
 @Component({
   selector: "app-navbar",

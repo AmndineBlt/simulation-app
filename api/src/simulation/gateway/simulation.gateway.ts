@@ -31,7 +31,10 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
       this.server.emit("grid", grid);
 
       if (this.simulationService.isSimulationOver()) {
-        this.server.emit("simulation-over");
+        const reason: string | null =
+          this.simulationService.getSimulationOverReason();
+        console.log("simulation-over émis, reason:", reason);
+        this.server.emit("simulation-over", reason);
         clearInterval(this.intervalId);
       }
     }, this.speed);
@@ -53,6 +56,7 @@ export class SimulationGateway implements OnGatewayInit, OnGatewayConnection {
     clearInterval(this.intervalId);
     this.simulationService.init();
     this.startSimulation();
+    // console.log("simulation redémarrée !");
   }
 
   @SubscribeMessage("pause")

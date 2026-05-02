@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { SimulationCard } from "../../shared/simulation-card/simulation-card";
-import { SimulationService } from "../../core/simulation";
+import { SimulationService } from "../../core/simulation.constant";
 import { SimulationCardData } from "../../shared/simulation-card/simulation-card.interface";
 
 @Component({
