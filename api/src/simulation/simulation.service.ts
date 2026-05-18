@@ -87,8 +87,8 @@ export class SimulationService {
       (cell: Entity | null) => cell === null,
     );
 
-    if (!hasAnimals) return "ALL ANIMALS HAVE PERISHED";
-    if (!hasEmptyCells) return "GRID IS FULL — SIMULATION STUCK";
+    if (!hasAnimals) return "TOUS LES ANIMAUX ONT PÉRI";
+    if (!hasEmptyCells) return "LA GRILLE EST PLEINE — SIMULATION BLOQUÉE";
     return null;
   }
 

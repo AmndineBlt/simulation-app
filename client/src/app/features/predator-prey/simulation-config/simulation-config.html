@@ -3,43 +3,43 @@
 
   <div class="grid grid-cols-2 gap-4">
     <div>
-      <label class="text-xs text-text-muted tracking-widest">GRID SIZE</label>
+      <label class="text-xs text-text-muted tracking-widest">TAILLE DE LA GRILLE</label>
       <input [(ngModel)]="config.gridSize"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="30"
              min="5" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">MAX CARROTS</label>
+      <label class="text-xs text-text-muted tracking-widest">NOMBRE DE CAROTTES MAX</label>
       <input [(ngModel)]="config.maxCarrots"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="100"
              min="0" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">RABBITS</label>
+      <label class="text-xs text-text-muted tracking-widest">LAPINS</label>
       <input [(ngModel)]="config.rabbitCount"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="50"
              min="0" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">WOLVES</label>
+      <label class="text-xs text-text-muted tracking-widest">LOUPS</label>
       <input [(ngModel)]="config.wolfCount"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="50"
              min="0" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">RABBIT REPRO RATE</label>
+      <label class="text-xs text-text-muted tracking-widest">TAUX DE REPRODUCTION DES LAPINS</label>
       <input [(ngModel)]="config.rabbitReproductionRate"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="1"
              min="0" step="0.1" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">WOLF REPRO RATE</label>
+      <label class="text-xs text-text-muted tracking-widest">TAUX DE REPRODUCTION DES LOUPS</label>
       <input [(ngModel)]="config.wolfReproductionRate"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="1"
              min="0" step="0.1" type="number">
     </div>
     <div>
-      <label class="text-xs text-text-muted tracking-widest">CARROTS</label>
+      <label class="text-xs text-text-muted tracking-widest">CAROTTES</label>
       <input [(ngModel)]="config.carrotCount"
              class="w-full mt-1 bg-surface-dark border border-border rounded px-3 py-2 text-white text-sm" max="100"
              min="0" type="number">
@@ -49,6 +49,6 @@
   <button (click)="apply()"
           class="flex items-center gap-2 mt-4 w-full px-4 py-2 text-sm tracking-wider border border-primary text-primary rounded hover:bg-primary hover:text-surface-dark transition-all cursor-pointer">
     <lucide-icon [class.spin-once]="isRestarting" [img]="Apply" [size]="15"/>
-    APPLY & RESTART
+    APPLIQUER & RELANCER
   </button>
 </div>

@@ -8,16 +8,18 @@ export class SimulationService {
   readonly simulations: SimulationCardData[] = [
     {
       number: "01",
-      title: "GAME OF LIFE",
-      description: "Conway's Game of Life — cellular automaton evolving on a 2D grid with simple survival rules.",
+      title: "JEU DE LA VIE",
+      description:
+        "Conway's Game of Life — automate cellulaire évoluant sur une grille 2D avec des règles de survie simples.",
       tags: ["WebSocket", "SOLID", "NestJS"],
       route: "/simulation/game-of-life",
       active: false,
     },
     {
       number: "02",
-      title: "PREDATOR / PREY",
-      description: "Lotka-Volterra ecosystem simulation with wolves, rabbits and carrots evolving in real time.",
+      title: "PRÉDATEUR / PROIE",
+      description:
+        "Simulation de l'écosystème Lotka-Volterra avec des loups, des lapins et des carottes évoluant en temps réel.",
       tags: ["WebSocket", "SOLID", "NestJS"],
       route: "/simulation/predator-prey",
       active: true,
