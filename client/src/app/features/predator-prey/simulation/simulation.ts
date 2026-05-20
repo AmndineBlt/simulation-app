@@ -8,6 +8,7 @@ import { SimulationGrid } from "../simulation-grid/simulation-grid";
 import { SimulationStats } from "../simulation-stats/simulation-stats";
 import { SimulationChart } from "../simulation-chart/simulation-chart";
 import { SimulationOver } from "../simulation-over/simulation-over";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: "app-simulation",
@@ -24,7 +25,7 @@ export class Simulation implements OnInit {
   speed = signal<number>(1000);
   isSimulationOver = signal<boolean>(false);
   simulationOverReason = signal<string>("");
-  private socket = io("http://localhost:3000");
+  private socket = io(environment.apiUrl);
 
   ngOnInit() {
     this.socket.on("grid", (grid: (GridCell | null)[][]) => {
